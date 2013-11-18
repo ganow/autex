@@ -1,4 +1,5 @@
 # coding:utf-8
+# reference: http://d.hatena.ne.jp/e_c_e_t/20110411
 
 def getcolor(colorname):
     colors = {
