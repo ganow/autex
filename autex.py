@@ -12,37 +12,41 @@ from watchdog.events import FileSystemEventHandler
 
 import gntp.notifier
 
+from col import black,red,green,yellow,blue,purple,cyan,white
+
 class EventHandler(FileSystemEventHandler):
 
     def __init__(self, command, detector):
         self.command = command
         self.detector = detector
+        self.finish_msg = sys.argv[0].split('/')[-1]+': command executed.'
         super(FileSystemEventHandler)
 
     def on_created(self, event):
         if event.is_directory:
-            print 'directory \'{0}\' created.'.format(event.src_path)
+            print cyan('directory \'{0}\' created.'.format(event.src_path))
         else:
-            print 'file \'{0}\' created.'.format(event.src_path)
+            print yellow('file \'{0}\' created.'.format(event.src_path))
             if self.detector in event.src_path: self.exec_command()
 
     def on_modified(self, event):
         if event.is_directory:
-            print 'directory \'{0}\' modified.'.format(event.src_path)
+            print cyan('directory \'{0}\' modified.'.format(event.src_path))
         else:
-            print 'file \'{0}\' modified.'.format(event.src_path)
+            print yellow('file \'{0}\' modified.'.format(event.src_path))
             if self.detector in event.src_path: self.exec_command()
 
     def on_deleted(self, event):
         if event.is_directory:
-            print 'directory \'{0}\' deleted.'.format(event.src_path)
+            print cyan('directory \'{0}\' deleted.'.format(event.src_path))
         else:
-            print 'file \'{0}\' deleted.'.format(event.src_path)
+            print cyan('file \'{0}\' deleted.'.format(event.src_path))
 
     def exec_command(self):
         print 'executing', self.command, '...'
         os.system(self.command)
-        gntp.notifier.mini(sys.argv[0].split('/')[-1]+': command executed.')
+        gntp.notifier.mini(self.finish_msg)
+        print green(self.finish_msg)
 
 def main():
 
