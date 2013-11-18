@@ -14,6 +14,8 @@ Preparation
 
 とかしとくとよい気がします。
 
+合わせて、Dependenciesの項にあるライブラリをインストールしておいて下さい
+
 Example Usage
 -----------------
 
@@ -37,3 +39,13 @@ Example Usage
     $ autex . --cmd "the command that you wanna do"
 
 としましょう。
+
+
+Dependencies
+-----------------
+
+- Python 2.7
+- watchdog 0.6.0
+- optparse 1.5.3
+- gntp 1.0.2
+

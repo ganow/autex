@@ -30,7 +30,8 @@ class EventHandler(FileSystemEventHandler):
                 print yellow('file \'{0}\' created.'.format(event.src_path))
                 self.exec_command()
             else:
-                print white('file \'{0}\' created.'.format(event.src_path))
+                # print white('file \'{0}\' created.'.format(event.src_path))
+                pass
 
     def on_modified(self, event):
         if event.is_directory:
@@ -40,7 +41,8 @@ class EventHandler(FileSystemEventHandler):
                 print yellow('file \'{0}\' modified.'.format(event.src_path))
                 self.exec_command()
             else:
-                print white('file \'{0}\' modified.'.format(event.src_path))
+                # print white('file \'{0}\' modified.'.format(event.src_path))
+                pass
 
     def on_deleted(self, event):
         if event.is_directory:
