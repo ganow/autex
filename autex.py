@@ -24,26 +24,25 @@ class EventHandler(FileSystemEventHandler):
             print 'directory \'{0}\' created.'.format(event.src_path)
         else:
             print 'file \'{0}\' created.'.format(event.src_path)
-            if self.detector in event.src_path:
-                print 'executing', self.command, '...'
-                os.system(self.command)
-                gntp.notifier.mini('watch.py: command executed.')
+            if self.detector in event.src_path: exec_command()
 
     def on_modified(self, event):
         if event.is_directory:
             print 'directory \'{0}\' modified.'.format(event.src_path)
         else:
             print 'file \'{0}\' modified.'.format(event.src_path)
-            if self.detector in event.src_path:
-                print 'executing', self.command, '...'
-                os.system(self.command)
-                gntp.notifier.mini('watch.py: command executed.')
+            if self.detector in event.src_path: exec_command()
 
     def on_deleted(self, event):
         if event.is_directory:
             print 'directory \'{0}\' deleted.'.format(event.src_path)
         else:
             print 'file \'{0}\' deleted.'.format(event.src_path)
+
+    def exec_command():
+        print 'executing', self.command, '...'
+        os.system(self.command)
+        gntp.notifier.mini('watch.py: command executed.')
 
 def main():
 
