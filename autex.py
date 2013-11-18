@@ -26,21 +26,27 @@ class EventHandler(FileSystemEventHandler):
         if event.is_directory:
             print cyan('directory \'{0}\' created.'.format(event.src_path))
         else:
-            print yellow('file \'{0}\' created.'.format(event.src_path))
-            if self.detector in event.src_path: self.exec_command()
+            if self.detector in event.src_path:
+                print yellow('file \'{0}\' created.'.format(event.src_path))
+                self.exec_command()
+            else:
+                print white('file \'{0}\' created.'.format(event.src_path))
 
     def on_modified(self, event):
         if event.is_directory:
             print cyan('directory \'{0}\' modified.'.format(event.src_path))
         else:
-            print yellow('file \'{0}\' modified.'.format(event.src_path))
-            if self.detector in event.src_path: self.exec_command()
+            if self.detector in event.src_path:
+                print yellow('file \'{0}\' modified.'.format(event.src_path))
+                self.exec_command()
+            else:
+                print white('file \'{0}\' modified.'.format(event.src_path))
 
     def on_deleted(self, event):
         if event.is_directory:
-            print cyan('directory \'{0}\' deleted.'.format(event.src_path))
+            print red('directory \'{0}\' deleted.'.format(event.src_path))
         else:
-            print cyan('file \'{0}\' deleted.'.format(event.src_path))
+            print red('file \'{0}\' deleted.'.format(event.src_path))
 
     def exec_command(self):
         print 'executing', self.command, '...'
